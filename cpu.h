@@ -38,6 +38,23 @@ class CPU
 
 };
 
+//Construtor da classe usando variadic templates
+template<typename ... Tn>
+CPU::Context::Context(void (* func)(Tn ...), Tn ... an) {
+    //Criação de um contexto nulo
+    ucontext_t u_context;
+    save();
+    _context.uc_link = 0;
+    //Alocação da memória para a stack
+    _context.uc_stack.ss_sp=malloc(STACK_SIZE);
+    _context.uc_stack.ss_size=STACK_SIZE;
+    //Flags da stack (?)
+    _context.uc_stack.ss_flags=0;
+    // Criação e alocação do novo contexto
+    makecontext(&_context, func, 0);
+}
+
+
 __END_API
 
 #endif
