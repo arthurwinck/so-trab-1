@@ -25,7 +25,6 @@ class CPU
 
             void save();
             void load();
-            void s_print(char*);
         private:            
             char *_stack;
         public:
@@ -48,7 +47,7 @@ CPU::Context::Context(void (* func)(Tn ...), Tn ... an) {
     //Alocação da memória para a stack
     _context.uc_stack.ss_sp=malloc(STACK_SIZE);
     _context.uc_stack.ss_size=STACK_SIZE;
-    //Flags da stack (?)
+    //Flags da stack
     _context.uc_stack.ss_flags=0;
     // Criação e alocação do novo contexto
 
