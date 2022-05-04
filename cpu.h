@@ -25,7 +25,7 @@ class CPU
 
             void save();
             void load();
-
+            void s_print(char*);
         private:            
             char *_stack;
         public:
@@ -51,7 +51,7 @@ CPU::Context::Context(void (* func)(Tn ...), Tn ... an) {
     //Flags da stack (?)
     _context.uc_stack.ss_flags=0;
     // Criação e alocação do novo contexto
-    makecontext(&_context, func, 0);
+    makecontext(&_context, (void(*)(void))func, sizeof...(Tn),an...);
 }
 
 

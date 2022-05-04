@@ -18,7 +18,6 @@ public:
         ContextMain = new CPU::Context();
         ping_name = "ping";
         pong_name = "pong";
-
         ping = new CPU::Context(func_ping, (char *) ping_name.data());
         pong = new CPU::Context(func_pong, (char *) pong_name.data());
 
