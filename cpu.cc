@@ -19,6 +19,8 @@ void CPU::Context::load()
 CPU::Context::~Context()
 {
     //adicionar implementação
+    free(_context.uc_stack.ss_sp); //remove alocação para stack
+    free(_context.uc_link); //remove valor para executar ao retornar de makecontext
 }
 
 void CPU::switch_context(Context *from, Context *to)

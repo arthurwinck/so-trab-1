@@ -51,7 +51,10 @@ CPU::Context::Context(void (* func)(Tn ...), Tn ... an) {
     //Flags da stack (?)
     _context.uc_stack.ss_flags=0;
     // Criação e alocação do novo contexto
+
     makecontext(&_context, (void(*)(void))func, sizeof...(Tn),an...);
+    // Alocação da função passada como parâmetro como função a ser executada pelo contexto, passada junto do número de parâmetros dessa função (cabeça da lista)
+    // e quais são esses parâmetros (cauda da lista)
 }
 
 
